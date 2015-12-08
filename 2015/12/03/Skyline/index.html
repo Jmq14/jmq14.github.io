@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>是我没学好C++【持续更新】 | 梦青 -Where I am</title>
+  <title>The Skyline Problem | 梦青 -Where I am</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -105,7 +105,7 @@
         		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
             	<ul class="sb-submenu">
 				  	
-				    <li><a href="/categories/C-C/" class="animsition-link">C/C++<small>(3)</small></a></li>
+				    <li><a href="/categories/C-C/" class="animsition-link">C/C++<small>(4)</small></a></li>
 				    
 				    <li><a href="/categories/随笔/" class="animsition-link">随笔<small>(1)</small></a></li>
 				    
@@ -215,40 +215,74 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2015-10-30T12:40:42.000Z" itemprop="datePublished">
-          2015-10-30
+      <time datetime="2015-12-03T12:41:17.000Z" itemprop="datePublished">
+          2015-12-03
       </time>
     
 </span>
-                <h1>是我没学好C++【持续更新】</h1>
+                <h1>The Skyline Problem</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<ol>
-<li>string 转 const char<em> 用 char</em> string::data()即可；string 转 char<em> 用 string::copy(char</em>, len, 0)</li>
-<li>自定义的类在作为函数值返回时会自动调取拷贝构造函数</li>
-<li>在同一个头文件里声明多个类的话，前者不能调用后者的析构函数</li>
-<li>vector排序：std::sort(v.begin(), v.end(), less) *自行定义比较函数</li>
-</ol>
+      		<p>问题描述： </p>
+<blockquote>
+<p>A city’s skyline is the outer contour of the silhouette formed by all the buildings in that city when viewed from a distance. Now suppose you are given the locations and height of all the buildings as shown on a cityscape photo (Figure A), write a program to output the skyline formed by these buildings collectively (Figure B).<br><img src="https://leetcode.com/static/images/problemset/skyline1.jpg" alt="Figure A">  <img src="https://leetcode.com/static/images/problemset/skyline2.jpg" alt="Figure B"><br>The geometric information of each building is represented by a triplet of integers [Li, Ri, Hi], where Li and Ri are the x coordinates of the left and right edge of the ith building, respectively, and Hi is its height. It is guaranteed that 0 ≤ Li, Ri ≤ INT_MAX, 0 &lt; Hi ≤ INT_MAX, and Ri - Li &gt; 0. You may assume all buildings are perfect rectangles grounded on an absolutely flat surface at height 0.</p>
+</blockquote>
+<p>原题目中还举了例子说明，太长了，要看的话<a href="https://leetcode.com/problems/the-skyline-problem/" target="_blank" rel="external">点这里</a></p>
+<p>本来没有什么比较好的想法，看了时宸巨巨的文章才觉得自己真的弱成渣了QAQ资识水平低得不要不要的 Anyway他讲的前缀和真的给我很大启发，我觉得这是一个处理区间问题的很巧妙的思路。因此，我们需要对地图进行这样的转换：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;&gt; buildingMap;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i&lt; buildings.size(); i++)&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; cBuilding = buildings[i];</span><br><span class="line">	buildingMap.push_back(make_pair(cBuilding[<span class="number">0</span>], cBuilding[<span class="number">2</span>]));</span><br><span class="line">	buildingMap.push_back(make_pair(cBuilding[<span class="number">1</span>], - cBuilding[<span class="number">2</span>]));</span><br><span class="line">&#125;</span><br><span class="line">sort(buildingMap.begin(), buildingMap.end(), lessX);</span><br></pre></td></tr></table></figure></p>
+<p>这样一来，我们只需要按照x坐标递增的顺序处理每个矩形开始和结束的状态即可（高度为正是开始，高度为负是结束），而这个状态就是在当前x坐标下还没有结束的矩形的最高高度，而如果当前所有矩形都结束则为0。为了达到这个“最高”的目的，显然是需要使用一些比较好的排序方法或者数据结构。在这里优先队列肯定是首要考虑到的，但是STL中的优先队列是无法修改队列中的元素的，这样的话就不能做到在某个矩形结束的时候删除其对应的高度，所以必须自己写一个可以删除中间项的优先队列。也有大神使用了multiset这种看起来相当高端的数据结构（感到自己资识水平又不够了），好像可以进行优化的排序。<br>我想的话…由于我们只需要最大值，所以不妨试一下使用最大堆。似乎得解释一下最大堆是什么… 嗯，首先，如果一颗树所有结点的值都大于或等于其叶子结点的值的话，它就叫做最大树，而当它是一个完全二叉树的时候，它就被叫做最大堆了~ 所以一个最大堆的根节点一定是这一坨数据的最大值。<br>STL中有提供堆的初始化、插入、删除和排序的函数，针对的对象是vector，需要包含库algorithm。在cplusplus references中对这些函数的说明大意是，make_heap是将一个向量变成一个最大或者最小堆，push_heap是在向量已经是一个堆的状态下，将向量尾部加进的新元素放到堆中，而pop_heap同样必须作用在向量已经是一个堆的状态下，然后将first结点与last结点进行交换，然后把[first,last)中的数据再次从上到下地堆化。另外它们的复杂度是O(n)。<br>值得注意的是，push_heap函数调用之前进行向量的push_back，pop_heap函数调用之后再进行向量的pop_back。官方给出的样例程序如下：</p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span>     // std::cout</span>
+<span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span>    // std::make_heap, std::pop_heap, std::push_heap, std::sort_heap</span>
+<span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span>       // std::vector</span>
+
+<span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>{
+  <span class="keyword">int</span> myints[] = {<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">5</span>,<span class="number">15</span>};
+  <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v(myints,myints+<span class="number">5</span>);
+
+  <span class="built_in">std</span>::make_heap (v.begin(),v.end());
+  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"initial max heap   : "</span> &lt;&lt; v.front() &lt;&lt; <span class="string">'\n'</span>;
+
+  <span class="built_in">std</span>::pop_heap (v.begin(),v.end()); v.pop_back();
+  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"max heap after pop : "</span> &lt;&lt; v.front() &lt;&lt; <span class="string">'\n'</span>;
+
+  v.push_back(<span class="number">99</span>); <span class="built_in">std</span>::push_heap (v.begin(),v.end());
+  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"max heap after push: "</span> &lt;&lt; v.front() &lt;&lt; <span class="string">'\n'</span>;
+
+  <span class="built_in">std</span>::sort_heap (v.begin(),v.end());
+
+  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"final sorted range :"</span>;
+  <span class="keyword">for</span> (<span class="keyword">unsigned</span> i=<span class="number">0</span>; i&lt;v.size(); i++)
+    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">' '</span> &lt;&lt; v[i];
+
+  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'\n'</span>;
+
+  <span class="keyword">return</span> <span class="number">0</span>;
+}
+
+Output:
+initial max heap   : <span class="number">30</span>
+max heap after pop : <span class="number">20</span>
+max heap after push: <span class="number">99</span>
+final sorted range : <span class="number">5</span> <span class="number">10</span> <span class="number">15</span> <span class="number">20</span> <span class="number">99</span>
+</code></pre><p>自己写一个堆的插入和删除也不是太难（感觉至少比排序树好…吧），需要注意的就是这里是用向量的下标来表示这个完全二叉树树的结点关系，所以需要找好对应关系。<br>由于这道题的存储高度的向量是从empty开始一个一个插入删除，并且每一次都需要取出最大值，所以只需用到push_heap和pop_heap两个函数。<br><figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (buildingMap[i].second &gt; <span class="number">0</span>)&#123;</span><br><span class="line">	buildingsHeight.push_back(buildingMap[i].second);</span><br><span class="line">	push_heap(buildingsHeight.begin<span class="literal">()</span>, buildingsHeight.<span class="keyword">end</span><span class="literal">()</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">	pop_heap(find(buildingsHeight.begin<span class="literal">()</span>, buildingsHeight.<span class="keyword">end</span><span class="literal">()</span>, -buildingMap[i].second), buildingsHeight.<span class="keyword">end</span><span class="literal">()</span>); buildingsHeight.pop_back<span class="literal">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当然这道题还需要注意很多细节，比如和已经记录的前一个节点高度相同的话就不能添加，比如遇到x坐标相同的点的话就得等它们的高度都全部添加或删除之后再做处理等等。感觉这些细节更让人头疼啊。最后修复了各种bug之后终于AC了，但是runtime感人…倒数10%，简直了… 大概还是大神们的选择更明智一些OwO</p>
+<hr>
+<p>时宸巨巨教导我们还是要学会线段树怎么写，我看了看教程，实在是不想动手写了。我想说程序猿真的需要注意身体啊，我活了20年，第一次体温超过38℃，还一度猛增到39.6℃，今天在票圈看到唐神说两天只睡了四小时，真是默默地感到心疼。今年帝都的冬天格外地冷，打针的时候护士也说怎么最近高烧的人这么多，但是我想尽管有气温低这种环境因素，但是掩盖不了身体变得没那么健康的事实。前段时间阿姨来北京看我们，说“一辈子那么长，不要太着急”，现在想起来真的快掉眼泪。<br>所以这个周末，面对两个没有动工的大作业，面对两个没有动工的论文，面对两本只看了一点的书和只背了一篇课文的英语，真是充满了无力感。总之就是再立了一个flag，就是要好好锻炼身体，以及多喝热水少熬夜。身体永远是第一位的。嗯嗯。<br>今天git到网页上出了点问题，现在都熄灯啦，Goodnight, World~</p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/2015/11/19/Lowest-Common-Ancestor/" style="float: left;">
-        ← Lowest Common Ancestor of a Binary Tree
-    </a>
     
-    
-    <a class="pull-right" href="/2015/10/23/Basic-Calculator/">
-        Basic Calculator →
+    <a class="pull-right" href="/2015/12/02/Tips-For-C++/">
+        是我没学好C++【持续更新】 →
     </a>
     
 </nav>
 
         <div class="duoshuo">
-<div class="ds-thread" data-thread-key="2015/10/30/Tips-For-C++/" data-title="是我没学好C++【持续更新】" data-url="http://yoursite.com/2015/10/30/Tips-For-C++/"></div>
+<div class="ds-thread" data-thread-key="2015/12/03/Skyline/" data-title="The Skyline Problem" data-url="http://yoursite.com/2015/12/03/Skyline/"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"jmq14"};
 (function() {
