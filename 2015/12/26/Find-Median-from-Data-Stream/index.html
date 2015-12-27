@@ -226,16 +226,18 @@
         <div class="col-md-8 col-md-offset-2">
       		<p>问题描述：</p>
 <blockquote>
-<p>Median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value. So the median is the mean of the two middle value.<br>找中位数，我自然地想到了平衡排序树，然而平衡只是高度上的，并不能确保根节点的左右子树有相同或者只相差1的结点数。所以就想到了维护两个数组，要求是长度相同或者相差1，其中一个数组所有数都比另一个数组大，每次寻找中位数的时候，只需要先判断两个数组长度是否相等，相等的话就分别取大数组的最小数和小数组的最大数求平均，否则只需要取其一就可以了。<br>由于这道题是不断插入数字，所以需要插入排序，可以选择的有折半插入，堆排序等等，这样插入排序的过程复杂度是O(logN)，而找中位数的复杂度只有O(1)。<br>我先写了折半插入：<br>    class MedianFinder {<br>    private:</p>
+<p>Median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value. So the median is the mean of the two middle value.</p>
 </blockquote>
-<pre><code>    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; upper;
+<p>找中位数，我自然地想到了平衡排序树，然而平衡只是高度上的，并不能确保根节点的左右子树有相同或者只相差1的结点数。所以就想到了维护两个数组，要求是长度相同或者相差1，其中一个数组所有数都比另一个数组大，每次寻找中位数的时候，只需要先判断两个数组长度是否相等，相等的话就分别取大数组的最小数和小数组的最大数求平均，否则只需要取其一就可以了。<br>由于这道题是不断插入数字，所以需要插入排序，可以选择的有折半插入，堆排序等等，这样插入排序的过程复杂度是O(logN)，而找中位数的复杂度只有O(1)。<br>我先写了折半插入：</p>
+<pre><code><span class="keyword">class</span> MedianFinder {
+<span class="keyword">private</span>:
+    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; upper;
     <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; lower;
 
     <span class="comment">// 折半插入，func默认为1代表升序，否则降序</span>
     <span class="function"><span class="keyword">void</span> <span class="title">binaryInsert</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;s, <span class="keyword">int</span> num, <span class="keyword">int</span> func = <span class="number">1</span>)</span> </span>{
         <span class="keyword">if</span> (s.size()==<span class="number">0</span>) {s.push_back(num); <span class="keyword">return</span>;}
         <span class="keyword">int</span> l = <span class="number">0</span>, r = s.size()-<span class="number">1</span>;
-
         <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator it = s.begin();
         <span class="keyword">switch</span> (func)
         {
