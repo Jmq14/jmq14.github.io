@@ -107,6 +107,8 @@
 				  	
 				    <li><a href="/categories/Programming/" class="animsition-link">Programming<small>(8)</small></a></li>
 				    
+				    <li><a href="/categories/Programming/Research/" class="animsition-link">Research<small>(1)</small></a></li>
+				    
 				    <li><a href="/categories/随笔/" class="animsition-link">随笔<small>(1)</small></a></li>
 				    
 				</ul>
@@ -146,7 +148,7 @@
                             <li><a href="/" class="animsition-link">梦青 -Where I am</a></li>
                             <li class="nolink"><span>Always </span>Creative.</li>
                             
-                            <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            <li><a href="https://github.com/Jmq14" title="Github" target="_blank"><i class="icon-github"></i></a></li>
                             
                             
                             <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
@@ -223,6 +225,8 @@
     | 
     <a href='/tags/CAFFE/'>CAFFE</a>,
     
+    <a href='/tags/CNN/'>CNN</a>,
+    
     <a href='/tags/Deep-Learning/'>Deep Learning</a>
     
     
@@ -242,7 +246,7 @@
 <blockquote>
 <p># build/tools/compute_image_mean [lmdb文件位置] [mean.binaryproto保存位置]</p>
 </blockquote>
-<p> 即可，也可以直接使用imagenet的均值文件。需要注意的是所有的脚本文件运行都需要terminal在caffe目录下；</p>
+<p>即可，也可以直接使用imagenet的均值文件。需要注意的是所有的脚本文件运行都需要terminal在caffe目录下；</p>
 </li>
 <li>修改网络参数，将三个文件train_val.prototxt, deploy.prototxt, solver.prototxt中的一系列路径进行修改，然后重点是train_val中的输出层，因为imagenet数据集一共有1000类图片，所以原本的fc8输出层有1000个输出神经元，我们需要把1000改为10，然后必须将fc8的名字进行修改，比如fc8_ADS，否则在复制模型参数的时候会出现问题，改名之后权重参数等将随机初始化；其次solver.prototxt中的参数也非常重要，因为我们的数据集比较小，不需要进行那么多次的迭代，另外lr也需要调小一些，因为我们只需要对模型进行微调即可，还有就是将GPU模式改成CPU模式；</li>
 <li>然后就可以开始训练了！同样参考caffe的example中给的train.sh脚本，修改路径，删掉GPU参数后运行即可。</li>
@@ -294,7 +298,7 @@ var duoshuoQuery = {short_name:"jmq14"};
             <div class="social">
                 <ul>
                     
-                    <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    <li><a href="https://github.com/Jmq14" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
                     
                     
                     <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
