@@ -183,8 +183,8 @@ function handleKeyPress(event) {
     if (game.status == statusDef.running && event.keyCode === table.SPACE) {
         updateDirection();
     } 
-    //else if (game.status === statusDef.entry && game.resources === 3) {
-    else if (game.status === statusDef.entry) {
+    else if (game.status === statusDef.entry && game.resources === 3) {
+    //else if (game.status === statusDef.entry) {
         initializeGame();
     } else if (game.status === statusDef.over) {
         window.location.reload();
@@ -329,11 +329,11 @@ function init(event) {
         game.maps = data;
         ++game.resources;
     });
-    //createjs.Sound.registerSound('./src/assets/bgm.mp3', 'bgm');
-    //createjs.Sound.registerSound('./src/assets/drop.wav', 'drop');
-    //createjs.Sound.on('fileload', function() {
-    //    ++game.resources;
-    //});
+    createjs.Sound.registerSound('./src/assets/bgm.mp3', 'bgm');
+    createjs.Sound.registerSound('./src/assets/drop.wav', 'drop');
+    createjs.Sound.on('fileload', function() {
+        ++game.resources;
+    });
     resetGame();
     createScene();
     fn = _init_fn(game, scene);
