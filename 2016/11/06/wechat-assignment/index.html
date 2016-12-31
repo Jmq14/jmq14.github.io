@@ -105,7 +105,7 @@
         		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
             	<ul class="sb-submenu">
 				  	
-				    <li><a href="/categories/Programming/" class="animsition-link">Programming<small>(10)</small></a></li>
+				    <li><a href="/categories/Programming/" class="animsition-link">Programming<small>(11)</small></a></li>
 				    
 				    <li><a href="/categories/Programming/Research/" class="animsition-link">Research<small>(1)</small></a></li>
 				    
@@ -190,11 +190,11 @@
                         <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
                             <div>
                             	
-                                <h2>YOU'VE MADE A <span>BRAVE</span> DECISION, WELCOME.</h2>
+                                <h2>ALL <span>BOUNDARIES</span> ARE CONVENTIONS</h2>
                                 <p></p>
 				    			
                                 <h2></h2>
-                                <p>每一个不曾起舞的日子都是对生命的辜负。</p>
+                                <p>WAITING TO BE <span>TRANSCENDED</span>.</p>
 				    			
 
                             </div>
@@ -242,7 +242,7 @@
       		<p>忙了半个学期的微信抢票大作业终于结束了，依然是和赫赫组队orz，这是我们组的第三个大作业啦，也是我第二次熬通宵哈哈哈。赫赫真的太强了，印象最深的是一晚上就搞定了celery的异步抢票，再用了一晚上fix了所有bug……总之就是要紧紧抱住队友的大腿！</p>
 <p>先简单讲讲我们实现了什么，大家都用过微信的公众号吧，或许有很多人还维护过公众号，或者编辑过图文消息，但是微信公众号远远不止这些功能，微信提供了很多接口，将用户发送的信息，或者公众号的菜单栏信息，从微信的服务器传送到我们自己的服务器，然后就可以做各种处理啦。需求就是要做一个能实现校内活动抢票的公众号。</p>
 <p>这次我的主要工作是对代码进行测试，分为单元测试、功能测试和性能测试（其中性能测试后面大半部分都由赫赫完成了），写了几周的测试，最大的感慨就是，测试是一件非常繁琐的事情，尤其是当你掌握测试工具的使用方法之后，剩下的就是重复劳动了，所以测试里的很多代码是重复的，只是略微变了一下测试条件或者输入，来模拟各种各样的情况。</p>
-<p>另一个让我学习到的东西是对单元测试的隔离性要求。在学Mock怎么用之前，我简直不明白要怎样在这么一个相对复杂、耦合度非常高的系统里面测试一个函数呢？后来发现Mock这个东西真的很神奇＝ ＝，把函数和对象直接替换掉，专注测试函数逻辑本身，有意思。而另一方面，功能测试则是完全站在使用者的角度来测试系统的正确性，所以涉及到一定的交互，一开始参考助教的方法用的phantomJS的webdriver，但是后来觉得在浏览器里实时看到会靠谱一点，所以中间调试的时候用了chrome（参考我的另一篇blog:<a href="http://jmq14.github.io/2016/01/22/GrabDataFromCloudMusic/">如何优雅地获取网易云音乐数据</a>，里面的爬虫用的就是这样的工具）。遗憾的是这次我们并没有做到测试驱动开发，一是队友的开发速度太快，二是我确实没找到啥大的bug，甚至每次测试不通过我的第一反应都是应该是我的测试代码有问题23333，大多数bug其实都是手动测试找出来的……</p>
+<p>另一个让我学习到的东西是对单元测试的隔离性要求。在学Mock怎么用之前，我简直不明白要怎样在这么一个相对复杂、耦合度非常高的系统里面测试一个函数呢？后来发现Mock这个东西真的很神奇＝ ＝，把函数和对象直接替换掉，专注测试函数逻辑本身，有意思。而另一方面，功能测试则是完全站在使用者的角度来测试系统的正确性，所以涉及到一定的交互，一开始参考助教的方法用的phantomJS的webdriver，但是后来觉得在浏览器里实时看到会靠谱一点，所以中间调试的时候用了chrome（参考我的另一篇blog:<a href="http://jmq14.github.io/2016/01/22/CrawlDataFromCloudMusic/">如何优雅地获取网易云音乐数据</a>，里面的爬虫用的就是这样的工具）。遗憾的是这次我们并没有做到测试驱动开发，一是队友的开发速度太快，二是我确实没找到啥大的bug，甚至每次测试不通过我的第一反应都是应该是我的测试代码有问题23333，大多数bug其实都是手动测试找出来的……</p>
 <p>代码在我的github里，不知道检查完后是否有机会公开。</p>
 <p>总之真的蛮辛苦的，几位助教和老师也非常关照我们，在此表达由衷的感谢。</p>
 <p>博客也好久没有更新了，下回来写写暑期实习的感受和今年cvpr投稿的paper吧。（继续赶下个ddl去了！～</p>

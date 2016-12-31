@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Archives | 梦青 | Where I am</title>
+  <title>软工大作业之“微学堂” | 梦青 | Where I am</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -84,7 +84,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -105,7 +105,7 @@
         		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
             	<ul class="sb-submenu">
 				  	
-				    <li><a href="/categories/Programming/" class="animsition-link">Programming<small>(10)</small></a></li>
+				    <li><a href="/categories/Programming/" class="animsition-link">Programming<small>(11)</small></a></li>
 				    
 				    <li><a href="/categories/Programming/Research/" class="animsition-link">Research<small>(1)</small></a></li>
 				    
@@ -190,11 +190,11 @@
                         <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
                             <div>
                             	
-                                <h2>YOU'VE MADE A <span>BRAVE</span> DECISION, WELCOME.</h2>
+                                <h2>ALL <span>BOUNDARIES</span> ARE CONVENTIONS</h2>
                                 <p></p>
 				    			
                                 <h2></h2>
-                                <p>每一个不曾起舞的日子都是对生命的辜负。</p>
+                                <p>WAITING TO BE <span>TRANSCENDED</span>.</p>
 				    			
 
                             </div>
@@ -212,55 +212,64 @@
 
         <!-- ============================ END Hero Image =========================== -->
       
-
-
-<section id="services">
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2015/11/21/20th-birthday/">记起我曾身藏利刃</a></h4>
-                            
-                            <p><time datetime="2015-11-21T13:26:44.000Z"><a href="/2015/11/21/20th-birthday/">2015-11-21</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2015/11/19/Lowest-Common-Ancestor/">Lowest Common Ancestor of a Binary Tree</a></h4>
-                            
-                            <p><time datetime="2015-11-19T09:22:41.000Z"><a href="/2015/11/19/Lowest-Common-Ancestor/">2015-11-19</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2015/10/23/Basic-Calculator/">Basic Calculator</a></h4>
-                            
-                            <p><time datetime="2015-10-23T01:09:44.000Z"><a href="/2015/10/23/Basic-Calculator/">2015-10-23</a></time></p>
-                        </div>
-                    
-                </div>
-            </div>    
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-12-30T11:27:33.000Z" itemprop="datePublished">
+          2016-12-30
+      </time>
+    
+    
+    | 
+    <a href='/tags/web/'>web</a>
+    
+    
+</span>
+                <h1>软工大作业之“微学堂”</h1>
+            </div>
         </div>
-    </div>
-</section> 
+        <div class="col-md-8 col-md-offset-2">
+      		<p>2016年就要走入尾声了，今年最后一个提交的作业是软件工程课最后交付的产品——清华大学微信网络学堂助手“微学堂”。虽说是“产品”，但其实11月底才公布和确定选题，只花了一个月开发，中间还经历了1个编译大作业，1个嵌入式大作业，1个传感器网络大作业，还有一场haskell考试和杂七杂八的小作业和不太麻烦的大作业……还好有我们的组长群主，每周勤勤恳恳地为我们订周一和周二的研讨间，每周两次的集体开发大家的效率都非常高，当然赶迭代n的ddl时也会有“加班”的情况，不过总体而言工作都在有条不紊地进行中（大概组长还是经历了很多承担压力内心崩溃的时刻……），最后我们的完成度也相当高。</p>
+<p>简单来说，我们这次仍然做了一个基于微信的移动端web应用，从网络学堂爬取课程作业、公告等等信息，然后通过微信公众号能推送新消息或者提供给用户可以便捷查看作业、公告、讲座等信息的界面。后来爬虫的工作由另一个组接手专门开发api，我们也从最初的查看新鲜事、推送ddl等基本功能，拓展到了可以通过日历界面查看新鲜事，还可以在平台上发布组队信息等等，当然这个过程中我们也放弃了很多特性，比如一开始在讨论目标用户的时候，我们就选择放弃了助教和老师，专心做好针对学生的应用，还有后来在很多组都在做讨论区的时候，我们一直在犹豫，最后放弃了做通用的论坛，而只是做一个发布“求组队”信息的平台，更具针对性的特性，能最大化地解决用户的问题，最后能发展到大家一想到“我要组队”就会想到“微学堂”，还能起到一定的宣传效果，而要是这个平台上什么东西都有反而就弱化了这个应用的印象。</p>
+<p><img src="/images/welearn.png" alt="img"></p>
+<p>我想，这是我从这个大作业学到的第一点，第一次做自己给自己提需求的作业，当然会面临“啊我们就写简单一点吧”的惰性，但其实要决定是否加一个特性的时候，真正让我们犹豫的是这个功能是不是有意义的，当然也有对自己能否如期完成并交付这个特性的考量。这个思考的过程很有意思，也如华榕大帝迭代一检查的时候所说，要学会做“小而精”的东西。一个高完成度的产品，不仅需要前期的脑洞、后期的技术，也需要逻辑，这个逻辑包含了常识和合情推理，能判断用户到底想要什么的能力，这一点我意外地从跟群主的言谈中得到很多体会。</p>
+<p>关于收获，第二点当然是对前端有了新的认识，虽说很多地方自己仍然非常naive，不过相对于之前的naive还是要好多了……学习了vue.js，略微了解了一点点现在流行的前端框架，顺带复习了js的各种语法（尤其是js的Date对象……坑很多啊），还有再次感叹前端果然需要设计力，大概自己在这一点上还是越来越有自信了吧，能用有限的工具、有限的能力，做出让大家眼前一亮的东西。</p>
+<p>第三点就是学习到了团队开发中维护文档的重要性，多人协作的时候，尤其是不能集体开发的时候，文档对效率的提高尤其重要、能使很多问题引刃而解，对写前端的同学来说，甚至都不用花太多时间来阅读后端的代码。对文档的信任，也体现了团队成员之间的相互信任吧。而如何设计接口也很有学问，参数应该尽量简洁的同时足够灵活和强大，不过一般来说我们就根据需要的功能来设计这些接口的参数和返回字段，有其它需要的时候再进行添加。另外，这个文档也不仅是我们在wiki里维护的前后端api文档，需求建模的作业里我们写文档的过程也帮助我们梳理了很多思路，也为后面写代码的过程提供了很多约定好的支撑。</p>
+<p>总之这个大作业写完还是很有成就感的，全靠组长和其它队友的carry啊！感谢感谢！</p>
+<p>老师说大家在个人总结里可以写一写关于课程的建议，我想就是能不能给后一个大作业再多一些的时间？用心做真的收获很多呢，或许再多几个星期，能做得更好OwO 也感谢老师和助教一直以来的关照，再次感谢！</p>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>谢谢你来，陪我一起看看岁月的样子。</p>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
         </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/2016/11/21/21st-birthday/">
+        第20年普通的生活 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+<div class="ds-thread" data-thread-key="2016/12/30/welearn/" data-title="软工大作业之“微学堂”" data-url="http://jmq14.github.io/2016/12/30/welearn/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"jmq14"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
     </div>
 </section>
+
+
       
 <!-- ============================ Footer =========================== -->
 
